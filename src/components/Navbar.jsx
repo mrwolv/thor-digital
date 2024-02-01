@@ -1,0 +1,53 @@
+/* eslint-disable react/prop-types */
+
+import { useState } from "react";
+import Navmodal from "./Navmodal";
+
+// eslint-disable-next-line no-unused-vars
+function Navbar({ navbarColor }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const genericHamburgerLine = `h-1 w-10 my-1 rounded-full bg-[#6ed5a6] transition ease transform duration-300`;
+
+  return (
+    <nav
+      className={`flex items-center justify-between text-white  font-semibold   py-4 px-6 md:px-20 md:py-8 ${
+        navbarColor ? "bg-white" : "bg-[#210C6E] "
+      }`}
+    >
+      <h1
+        className={`text-[1.7rem] font-extrabold cursor-pointer  ${
+          navbarColor ? "text-black  " : "text-white "
+        } `}
+      >
+        Thor solutions
+      </h1>
+      <button
+        className="flex flex-col h-12 w-12   justify-center items-center group"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div
+          className={`${genericHamburgerLine} ${
+            isOpen
+              ? "rotate-45 translate-y-3 opacity-100 group-hover:opacity-100"
+              : "opacity-100 group-hover:opacity-100"
+          }`}
+        />
+        <div
+          className={`${genericHamburgerLine} ${
+            isOpen ? "opacity-0" : "opacity-100 group-hover:opacity-100"
+          }`}
+        />
+        <div
+          className={`${genericHamburgerLine} ${
+            isOpen
+              ? "-rotate-45 -translate-y-3 opacity-100 group-hover:opacity-100"
+              : "opacity-100 group-hover:opacity-100"
+          }`}
+        />
+      </button>
+      {isOpen && <Navmodal onClose={() => setIsOpen(false)} />}
+    </nav>
+  );
+}
+
+export default Navbar;
