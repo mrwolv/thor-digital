@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import Navbar from "../components/Navbar";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import NewsLetter from "../components/blogcomponents/NewsLetter";
 
@@ -34,7 +34,11 @@ const SingleBlogPages = () => {
              {title}
             </h1>
             <p className="text-[1.1rem ] md:text-[1.2rem] text-gray-400 flex items-center  gap-3  ">
-              <span className="uppercase underline text-[#562ABD]">authoe</span>
+              <span className="uppercase underline text-[#562ABD] active:text-red-300">
+                <Link to='/author'>
+                Author
+                </Link>
+              </span>
               <span className="h-2 w-2 rounded-full bg-gray-400 "></span>
               <span className="uppercase ">date</span>
             </p>
