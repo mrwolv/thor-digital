@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Navmodal from "./Navmodal";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line no-unused-vars
 function Navbar({ navbarColor }) {
@@ -19,7 +20,7 @@ function Navbar({ navbarColor }) {
           navbarColor ? "text-black  " : "text-white "
         } `}
       >
-        Thor solutions
+       <Link to={'/'}>Thor Solutions</Link>
       </h1>
       <button
         className="flex flex-col h-12 w-12   justify-center items-center group"
