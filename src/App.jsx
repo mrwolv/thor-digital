@@ -12,7 +12,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Outlet/>}/>
         <Route path="/blog" element={<Blog/>}/>
-        <Route path="/post/:id" element={<SingleBlogPages/>} />
+        <Route path="/post/:title" element={<SingleBlogPages/>} />
       </Routes>
     </BrowserRouter>
   );

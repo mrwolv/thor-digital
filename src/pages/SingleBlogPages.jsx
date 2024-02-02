@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import Navbar from "../components/Navbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import NewsLetter from "../components/blogcomponents/NewsLetter";
 
@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 
 const SingleBlogPages = () => {
   const navigate = useNavigate();
+  const {title}  = useParams()
 
   return (
     <>
@@ -16,7 +17,7 @@ const SingleBlogPages = () => {
       <main className="bg-white md:p-20 px-6 py-10 ">
         <div className="flex flex-col items-start gap-10 md:flex-row md:items-center md:gap-32 ">
           <div
-            className="relative h-16 w-16 md:h-16 md:w-32 md:mb-72 rounded-full bg-gray-200 opacity-75 transition-transform ease-in-out duration-300 hover:scale-110 hover:translate-y-[-1px] hover:cursor-pointer"
+            className="relative h-16 w-16 md:h-[3.5rem] md:w-[7.5rem] md:mb-72 rounded-full bg-gray-200 opacity-75 transition-transform ease-in-out duration-300 hover:scale-110 hover:translate-y-[-1px] hover:cursor-pointer"
             onClick={() => navigate(-1)}
           >
             <FaArrowLeftLong
@@ -30,7 +31,7 @@ const SingleBlogPages = () => {
               creator economy / header title{" "}
             </span>
             <h1 className="md:text-[4.2rem] text-[1.9rem] font-semibold tracking-tight">
-              Quality or Quantity? Finding the Right Balance for Creator Success
+             {title}
             </h1>
             <p className="text-[1.1rem ] md:text-[1.2rem] text-gray-400 flex items-center  gap-3  ">
               <span className="uppercase underline text-[#562ABD]">authoe</span>

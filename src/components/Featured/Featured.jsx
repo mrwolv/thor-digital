@@ -48,6 +48,7 @@ const Featured = ({text}) => {
       <Button
       text='View all Post'
       hover={true}
+  
       />
 
       <div className="mt-6 py-5   ">

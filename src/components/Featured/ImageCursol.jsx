@@ -5,6 +5,7 @@ import { useState } from "react";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { featured } from "../../constants/featured";
+import { Link } from "react-router-dom";
 
 const ImageCursol = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -45,27 +46,29 @@ const MobileImageComponent = () => {
     >
       {featured.map((item, index) => (
         <SwiperSlide key={index}>
-          <div className="flex flex-col mb-20">
-            <img
-              src={item.imageUrl}
-              alt={item.title}
-              className="rounded-md w-full h-full"
-              loading="lazy"
-            />
-            <p className="flex items-center gap-6 mt-6 uppercase">
-              <span className="border border-[#747373] text-[#747373] py-1 px-3 rounded">
-                {item.categories.title1}
-              </span>
-              <span className="border border-[#747373] text-[#747373] py-1 px-3 rounded">
-                {item.categories.title2}
-              </span>
-            </p>
-            <p className="text-[1.7rem] font-semibold mt-4">{item.title}</p>
-            <p className="flex items-center gap-3 mt-2 text-[#747373]">
-              <span>{item.date}</span>
-              <span className="h-1 w-1 rounded-full bg-[#747373]"></span>
-              <span>{item.readTime}</span>
-            </p>
+          <div className="flex flex-col mb-20 ">
+            <Link to={`/post/${encodeURIComponent(item.title)}`}>
+              <img
+                src={item.imageUrl}
+                alt={item.title}
+                className="rounded-md w-full h-full  "
+                loading="lazy"
+              />
+              <p className="flex items-center gap-6 mt-6 uppercase">
+                <span className="border border-[#747373] text-[#747373] py-1 px-3 rounded">
+                  {item.categories.title1}
+                </span>
+                <span className="border border-[#747373] text-[#747373] py-1 px-3 rounded">
+                  {item.categories.title2}
+                </span>
+              </p>
+              <p className="text-[1.7rem] font-semibold mt-4">{item.title}</p>
+              <p className="flex items-center gap-3 mt-2 text-[#747373]">
+                <span>{item.date}</span>
+                <span className="h-1 w-1 rounded-full bg-[#747373]"></span>
+                <span>{item.readTime}</span>
+              </p>
+            </Link>
           </div>
         </SwiperSlide>
       ))}
@@ -88,27 +91,29 @@ const DesktopImageSlider = () => {
       >
         {featured.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="md:flex md:flex-col md:mb-20">
-              <img
-                src={item.imageUrl}
-                alt={item.title}
-                className="rounded-md w-full h-full"
-                loading="lazy"
-              />
-              <p className="flex items-center gap-6 mt-6 uppercase">
-                <span className="border border-[#747373] text-[#747373] py-1 px-3 rounded">
-                  {item.categories.title1}
-                </span>
-                <span className="border border-[#747373] text-[#747373] py-1 px-3 rounded">
-                  {item.categories.title2}
-                </span>
-              </p>
-              <p className="text-[1.7rem] font-semibold mt-4">{item.title}</p>
-              <p className="flex items-center gap-3 mt-2 text-[#747373]">
-                <span>{item.date}</span>
-                <span className="h-1 w-1 rounded-full bg-[#747373]"></span>
-                <span>{item.readTime}</span>
-              </p>
+            <div className="md:flex md:flex-col md:mb-20 hover:cursor-pointer">
+              <Link to={`/post/${encodeURIComponent(item.title)}`}>
+                <img
+                  src={item.imageUrl}
+                  alt={item.title}
+                  className="rounded-md w-full h-full"
+                  loading="lazy"
+                />
+                <p className="flex items-center gap-6 mt-6 uppercase">
+                  <span className="border border-[#747373] text-[#747373] py-1 px-3 rounded">
+                    {item.categories.title1}
+                  </span>
+                  <span className="border border-[#747373] text-[#747373] py-1 px-3 rounded">
+                    {item.categories.title2}
+                  </span>
+                </p>
+                <p className="text-[1.7rem] font-semibold mt-4">{item.title}</p>
+                <p className="flex items-center gap-3 mt-2 text-[#747373]">
+                  <span>{item.date}</span>
+                  <span className="h-1 w-1 rounded-full bg-[#747373]"></span>
+                  <span>{item.readTime}</span>
+                </p>
+              </Link>
             </div>
           </SwiperSlide>
         ))}

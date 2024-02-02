@@ -43,7 +43,7 @@ const BlogGallery = () => {
             className="flex flex-col items-center justify-between gap-10"
             key={item.id}
           >
-            <Link  to={`/post/${item.id}`}>
+            <Link to={`/post/${encodeURIComponent(item.description)}`}>
               {/* Your existing code for each topic */}
               <img
                 src={item.imageUrl}
