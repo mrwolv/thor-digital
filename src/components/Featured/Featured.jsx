@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
 import SplitType from "split-type";
 import Button from "../Button";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types, no-unused-vars
 const Featured = ({text}) => {
@@ -44,12 +45,13 @@ const Featured = ({text}) => {
       <h1 className="md:text-[3.8rem]  text-[1.6rem]  font-extrabold clip-your-needful-style our-text">
       {text}
       </h1>
-
+<Link to='/blog'>
       <Button
       text='View all Post'
       hover={true}
-  
+      
       />
+      </Link>
 
       <div className="mt-6 py-5   ">
         <ImageCursol />
