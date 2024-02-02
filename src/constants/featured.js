@@ -137,7 +137,7 @@ export const topics = [
   {
     id: 2,
     imageUrl: "/creator.jpg",
-    topic: "Creatore / Economy",
+    topic: "Digital",
     description:
       "Quality or Quantity? Finding the Right Balance for Creator Success",
     author: "Thor Solutions",
@@ -146,7 +146,7 @@ export const topics = [
   {
     id: 3,
     imageUrl: "/creator.jpg",
-    topic: "Creatore / Economy",
+    topic: "Marketing",
     description:
       "Quality or Quantity? Finding the Right Balance for Creator Success",
     author: "Thor Solutions",
@@ -155,7 +155,7 @@ export const topics = [
   {
     id: 4,
     imageUrl: "/creator.jpg",
-    topic: "Creatore / Economy",
+    topic: "SASS",
     description:
       "Quality or Quantity? Finding the Right Balance for Creator Success",
     author: "Thor Solutions",
@@ -164,7 +164,7 @@ export const topics = [
   {
     id: 5,
     imageUrl: "/creator.jpg",
-    topic: "Creatore / Economy",
+    topic: "Affilate",
     description:
       "Win Through Positive Customer Experience With Each Successful Customer Onboarding",
     author: "Thor Solutions",
@@ -173,7 +173,7 @@ export const topics = [
   {
     id: 6,
     imageUrl: "/creator.jpg",
-    topic: "Creatore / Economy",
+    topic: "Private",
     description:
       "Nora: How I Aim to Turn a Notion Template into a Sustainable Business",
     author: "Thor Solutions",
@@ -191,7 +191,7 @@ export const topics = [
   {
     id: 8,
     imageUrl: "/creator.jpg",
-    topic: "Creatore / Economy",
+    topic: "Affilate",
     description:
       "Nora: How I Aim to Turn a Notion Template into a Sustainable Business",
     author: "Thor Solutions",
@@ -200,7 +200,7 @@ export const topics = [
   {
     id: 9,
     imageUrl: "/creator.jpg",
-    topic: "Creatore / Economy",
+    topic: "Private",
     description:
       "Nora: How I Aim to Turn a Notion Template into a Sustainable Business",
     author: "Thor Solutions",
@@ -208,6 +208,24 @@ export const topics = [
   },
   {
     id: 10,
+    imageUrl: "/creator.jpg",
+    topic: "Creatore / Economy",
+    description:
+      "Nora: How I Aim to Turn a Notion Template into a Sustainable Business",
+    author: "Thor Solutions",
+    date: "1 feb 2024",
+  },
+  {
+    id: 11,
+    imageUrl: "/creator.jpg",
+    topic: "Creatore / Economy",
+    description:
+      "Nora: How I Aim to Turn a Notion Template into a Sustainable Business",
+    author: "Thor Solutions",
+    date: "1 feb 2024",
+  },
+  {
+    id: 12,
     imageUrl: "/creator.jpg",
     topic: "Creatore / Economy",
     description:
