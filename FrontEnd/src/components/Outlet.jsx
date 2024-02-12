@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import TextAnimation from "../components/TextAnimation";
+import HeroSection from "../components/HeroSection";
 import SlidingText from "../components/InfiniteTextSlide";
 import Capabilities from "../components/Capabilities";
 import Featured from "../components/Featured/Featured";
@@ -21,7 +21,7 @@ const Outlet = ({data}) => {
   return (
     <main className=" bg-[#210C6E] h-full  ">
       <Navbar isOpen={isOpen} toggle={toggleMenu} />
-      <TextAnimation data={data} />
+      <HeroSection data={data} />
       <SlidingText />
       <Capabilities data={data} />
       <Featured text="Featured Post" data={data} />

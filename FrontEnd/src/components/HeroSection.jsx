@@ -4,9 +4,14 @@
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import SplitType from "split-type";
+import UseFetch from "../hooks/UseFetch";
 
-const TextAnimation = ({ data }) => {
-  console.log(data);
+const HeroSection = () => {
+
+  const {data,loading} = UseFetch("http://localhost:1337/api/hero-section?populate=*")
+
+ 
+  
 
   useEffect(() => {
     const splitText = (text, className) => {
@@ -83,4 +88,4 @@ const TextAnimation = ({ data }) => {
   );
 };
 
-export default TextAnimation;
+export default HeroSection;

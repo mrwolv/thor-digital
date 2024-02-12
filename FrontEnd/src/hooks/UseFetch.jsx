@@ -14,7 +14,7 @@ const UseFetch = (url) => {
         },
       });
       const resData = await res.json();
-      setData(resData.data);
+      setData(resData.data?.attributes);
       setLoading(false);
     }
     fetchData();

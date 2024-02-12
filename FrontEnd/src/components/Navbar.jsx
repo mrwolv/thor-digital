@@ -27,7 +27,7 @@ function Navbar({ navbarColor }) {
           navbarColor ? "text-black  " : "text-white "
         } `}
       >
-        <Link to={"/"} >{data?.attributes?.title}</Link>
+        <Link to={"/"} >{data?.title}</Link>
       </h1>
       <button
         className="flex flex-col h-12 w-12   justify-center items-center group"

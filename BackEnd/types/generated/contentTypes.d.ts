@@ -396,6 +396,37 @@ export interface ApiHeaderHeader extends Schema.SingleType {
   };
 }
 
+export interface ApiHeroSectionHeroSection extends Schema.SingleType {
+  collectionName: 'hero_sections';
+  info: {
+    singularName: 'hero-section';
+    pluralName: 'hero-sections';
+    displayName: 'HeroSection';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hero-section.hero-section',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hero-section.hero-section',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -826,6 +857,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::header.header': ApiHeaderHeader;
+      'api::hero-section.hero-section': ApiHeroSectionHeroSection;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
