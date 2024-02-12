@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import { featured } from "../../constants/featured";
 import { Link } from "react-router-dom";
 
-const ImageCursol = () => {
+const ImageCursol = ({ data }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
@@ -25,7 +25,11 @@ const ImageCursol = () => {
 
   return (
     <section className="mt-6 -mb-6">
-      {isMobile ? <MobileImageComponent /> : <DesktopImageSlider />}
+      {isMobile ? (
+        <MobileImageComponent data={data} />
+      ) : (
+        <DesktopImageSlider data={data} />
+      )}
     </section>
   );
 };
@@ -76,7 +80,7 @@ const MobileImageComponent = () => {
   );
 };
 
-const DesktopImageSlider = () => {
+const DesktopImageSlider = ({ data }) => {
   return (
     <section>
       <Swiper
@@ -86,37 +90,38 @@ const DesktopImageSlider = () => {
         keyboard={true}
         draggable={true}
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
       >
-        {featured.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="md:flex md:flex-col md:mb-20 hover:cursor-pointer">
-              <Link to={`/post/${encodeURIComponent(item.title)}`}>
-                <img
-                  src={item.imageUrl}
-                  alt={item.title}
-                  className="rounded-md w-full h-full"
-                  loading="lazy"
-                />
-                <p className="flex items-center gap-6 mt-6 uppercase">
-                  <span className="border border-[#747373] text-[#747373] py-1 px-3 rounded">
-                    {item.categories.title1}
-                  </span>
-                  <span className="border border-[#747373] text-[#747373] py-1 px-3 rounded">
-                    {item.categories.title2}
-                  </span>
-                </p>
-                <p className="text-[1.7rem] font-semibold mt-4">{item.title}</p>
-                <p className="flex items-center gap-3 mt-2 text-[#747373]">
-                  <span>{item.date}</span>
-                  <span className="h-1 w-1 rounded-full bg-[#747373]"></span>
-                  <span>{item.readTime}</span>
-                </p>
-              </Link>
-            </div>
-          </SwiperSlide>
-        ))}
+        {data &&
+          data.Posts?.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="md:flex md:flex-col md:mb-20 hover:cursor-pointer">
+                <Link to={`/post/${encodeURIComponent(item.title)}`}>
+                  <img
+                    src={item.Image.data && item.Image.data.attributes.name}
+                    alt={item.Image.data && item.Image.data.attributes.name}
+                    className="rounded-md w-full h-full"
+                  />
+                  <p className="flex items-center gap-6 mt-6 uppercase">
+                    <span className="border border-[#747373] text-[#747373] py-1.5 px-4 rounded">
+                      {item.categoryTitle1}
+                    </span>
+                    <span className="border border-[#747373] text-[#747373] py-1.5 px-4 rounded">
+                      {item.categoryTitle2}
+                    </span>
+                  </p>
+                  <p className="text-[1.7rem] font-semibold mt-4">
+                    {item.postTitle}
+                  </p>
+                  <p className="flex items-center gap-3 mt-2 text-[#747373]">
+                    <span>{item.date}</span>
+
+                    <span className="h-1 w-1 rounded-full bg-[#747373]"></span>
+                    <span>20 min read</span>
+                  </p>
+                </Link>
+              </div>
+            </SwiperSlide>
+          ))}
       </Swiper>
     </section>
   );

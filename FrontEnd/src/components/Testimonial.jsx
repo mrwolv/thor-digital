@@ -5,8 +5,10 @@ import gsap from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const Testimonial = () => {
+const Testimonial = ({data}) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  console.log(data)
 
   useEffect(() => {
     const handleResize = () => {
@@ -113,48 +115,48 @@ const Testimonial = () => {
          
         </p>
       </h1>
-      {isMobile ? <TestimonialSlide /> : <DesktopTestimonial />}
+      {isMobile ? <TestimonialSlide data={data} /> : <DesktopTestimonial data={data} />}
     </section>
   );
 };
 
 export default Testimonial;
 
-export function DesktopTestimonial() {
+export function DesktopTestimonial({data}) {
   return (
     <div className="flex items-center justify-between gap-2">
-      {testimonial.map((data) => (
+      {data&&data.Testimonial?.map((item) => (
         <div
           className={`${
-            data.id === 1
+            item.id === 1
               ? "md:mt-[10rem]"
-              : data.id === 2
+              : item.id === 2
               ? "md:-mt-[2rem]"
               : "md:-mt-[16rem]"
           } md:flex md:flex-col md:items-start md:gap-5`}
-          key={data.id}
+          key={item.id}
         >
           <img
            
-            src={data.imageUrl}
+            src={item.Image.data && item.Image.data.attributes.name}
             alt="author"
             className={`rounded-2xl img clip-your-needful ${
-              data.id === 1
+              item.id === 1
                 ? "h-72 w-[28rem]"
-                : data.id === 2
+                : item.id === 2
                 ? "h-[28rem] w-[24rem]"
                 : " h-[32rem] w-[24rem]"
             } object-cover`}
           />
           <p className="text-left text-[1.125rem] w-[25rem]">
-            {data.description}
+            {item.About}
           </p>
           <p className="md:flex md:flex-col gap-1">
             <span className="text-[1.1rem] font-bold uppercase">
-              {data.name}
+              {item.name}
             </span>
             <span className="text-[1.1rem] uppercase text-[#535351]">
-              {data.jobTitle}
+              {item.jobTitle}
             </span>
           </p>
         </div>
@@ -168,7 +170,7 @@ function TestimonialSlide() {
     <Swiper>
       {
         <div className="flex items-center justify-between gap-2">
-          {testimonial.map((data) => (
+          {testimonial.map((item) => (
             <SwiperSlide
               spaceBetween={50}
               slidesPerView={1}
@@ -178,22 +180,22 @@ function TestimonialSlide() {
               onSlideChange={() => console.log("slide change")}
               onSwiper={(swiper) => console.log(swiper)}
               className="mt-10"
-              key={data.id}
+              key={item.id}
             >
               <img
-                src={data.imageUrl}
+                src={item.imageUrl}
                 alt="author"
                 className={`rounded-2xl h-96 w-[28rem] object-cover`}
               />
               <p className="mt-7 text-left text-[1.125rem]">
-                {data.description}
+                {item.description}
               </p>
               <p className="mt-5 flex flex-col gap-1">
                 <span className="text-[1.1rem] font-bold uppercase">
-                  {data.name}
+                  {item.name}
                 </span>
                 <span className="text-[1.1rem] uppercase text-[#535351]">
-                  {data.jobTitle}
+                  {item.jobTitle}
                 </span>
               </p>
             </SwiperSlide>

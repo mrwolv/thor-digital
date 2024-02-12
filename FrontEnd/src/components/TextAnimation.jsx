@@ -1,10 +1,13 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import SplitType from "split-type";
 
-const TextAnimation = () => {
+const TextAnimation = ({ data }) => {
+  console.log(data);
+
   useEffect(() => {
     const splitText = (text, className) => {
       const words = text.split(" ");
@@ -57,24 +60,26 @@ const TextAnimation = () => {
 
     const h1Element = document.querySelector(".custom-text");
     h1Element.innerHTML = splitText(
-      "Discover the next stage of a founder’s story",
+      // "Discover the next stage of a founder’s story",
+      ` ${data && data?.Title}`,
       "animated-word"
     );
 
     animateText(h1Element);
     animateLines(".para-text");
-  }, []);
+  });
 
   return (
-    <div className="px-6 py-10 md:p-20 flex flex-col md:flex-row md:justify-between md:items-center text-white ">
-      <h1 className="md:text-[4.8rem] text-left text-[2.5rem] font-extrabold custom-text clip-your-needful-style md:w-[40rem]">
-        {/* The text will be dynamically added here */}
-      </h1>
-      <p className="md:text-[1.4rem] mt-20 md:ml-10  md:w-[34rem] para-text clip-your-needful-style ">
-        Digital consulting for tech and SaaS, laying the framework to accelerate
-        your growth to new heights.
-      </p>
-    </div>
+    <>
+      <div className="px-6 py-10 md:p-20 flex flex-col md:flex-row md:justify-between md:items-center text-white ">
+        <h1 className="md:text-[4.8rem] text-left text-[2.5rem] font-extrabold custom-text clip-your-needful-style md:w-[40rem]">
+          {/* The text will be dynamically added here */}
+        </h1>
+        <p className="md:text-[1.4rem] mt-20 md:ml-10  md:w-[34rem] para-text clip-your-needful-style ">
+          {data && data?.Description}
+        </p>
+      </div>
+    </>
   );
 };
 

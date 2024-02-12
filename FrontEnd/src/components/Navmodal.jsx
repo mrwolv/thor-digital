@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const Navmodal = ({ onClose }) => {
+const Navmodal = ({ onClose, data }) => {
   useEffect(() => {
     const navItems = document.querySelectorAll(".nav-item");
     gsap.registerPlugin(ScrollTrigger);
@@ -50,7 +50,7 @@ const Navmodal = ({ onClose }) => {
     <div className="fixed top-[15%] right-[3%] bg-[#210C6E] md:px-5 px-3  md:py-3 opacity-85 z-10 h-[260px] w-[170px] md:w-[220px] shadow-2xl rounded-md modal-container">
       <ul className="mt-4 text-white text-[1.2rem] flex flex-col justify-center gap-5">
         <li className="nav-item hover:cursor-pointer">
-          About
+          {data?.attributes?.about}
           <span
             className="hover-underline"
             style={{
@@ -61,7 +61,7 @@ const Navmodal = ({ onClose }) => {
           ></span>
         </li>
         <li className="nav-item hover:cursor-pointer">
-          Capabilities
+          {data?.attributes?.capabilities}
           <span
             className="hover-underline"
             style={{
@@ -72,7 +72,7 @@ const Navmodal = ({ onClose }) => {
           ></span>
         </li>
         <li className="nav-item relative cursor-pointer group ">
-          <Link to="/blog">Blog</Link>
+          <Link to="/blog">{data?.attributes?.blog}</Link>
           <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2  rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             {" "}
             <FaExternalLinkAlt size={13} className="mb-2.5 text-gray-400" />

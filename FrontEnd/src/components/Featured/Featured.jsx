@@ -8,7 +8,7 @@ import Button from "../Button";
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types, no-unused-vars
-const Featured = ({text}) => {
+const Featured = ({text,data}) => {
   
   useEffect(() => {
     const ourText = new SplitType('.our-text', { types: 'chars' });
@@ -54,7 +54,7 @@ const Featured = ({text}) => {
       </Link>
 
       <div className="mt-6 py-5   ">
-        <ImageCursol />
+        <ImageCursol data={data} />
       </div>
     </section>
   );

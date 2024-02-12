@@ -3,10 +3,17 @@
 import { useState } from "react";
 import Navmodal from "./Navmodal";
 import { Link } from "react-router-dom";
+import UseFetch from "../hooks/UseFetch";
 
-// eslint-disable-next-line no-unused-vars
 function Navbar({ navbarColor }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { data, loading } = UseFetch( "http://localhost:1337/api/header?populate=*");
+
+
+
+  if (loading) return <p>....Loading...</p>;
+
   const genericHamburgerLine = `h-1 w-10 my-1 rounded-full bg-[#6ed5a6] transition ease transform duration-300`;
 
   return (
@@ -20,7 +27,7 @@ function Navbar({ navbarColor }) {
           navbarColor ? "text-black  " : "text-white "
         } `}
       >
-       <Link to={'/'}>Thor Solutions</Link>
+        <Link to={"/"} >{data?.attributes?.title}</Link>
       </h1>
       <button
         className="flex flex-col h-12 w-12   justify-center items-center group"
@@ -46,7 +53,7 @@ function Navbar({ navbarColor }) {
           }`}
         />
       </button>
-      {isOpen && <Navmodal onClose={() => setIsOpen(false)} />}
+      {isOpen && <Navmodal onClose={() => setIsOpen(false)}  data={data}/>}
     </nav>
   );
 }
