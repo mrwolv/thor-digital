@@ -8,8 +8,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const Testimonial = ({data}) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  console.log(data)
-
+  
+  
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 800);

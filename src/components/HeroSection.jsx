@@ -7,11 +7,9 @@ import SplitType from "split-type";
 import UseFetch from "../hooks/UseFetch";
 
 const HeroSection = () => {
-
-  const {data,loading} = UseFetch("http://localhost:1337/api/hero-section?populate=*")
-
- 
-  
+  const { data, loading } = UseFetch(
+    "http://localhost:1337/api/hero-section?populate=*"
+  );
 
   useEffect(() => {
     const splitText = (text, className) => {
