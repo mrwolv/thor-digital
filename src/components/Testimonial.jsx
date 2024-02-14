@@ -10,9 +10,10 @@ import UseFetch from "../hooks/UseFetch";
 const Testimonial = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  const {data,loading} = UseFetch('http://localhost:1337/api/testimonial?populate=Testimonial.Image')
-  
-  
+  const { data, loading } = UseFetch(
+    "http://localhost:1337/api/testimonial?populate=Testimonial.Image"
+  );
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 800);
@@ -73,36 +74,35 @@ const Testimonial = () => {
 
     // Animate line for the second part
     animateLines(".text-split > span");
-    
-    gsap.fromTo('.img', 
-    
-    {
-      opacity:0,
-      y:100,
-      clipPath:' polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);'
-    },{
-      y:0,
-      opacity:1,
-      duration: 0.9,
-      clipPath:'polygon(0 100%, 100% 100%, 100% 0, 0 0)',
-      ease: "power2.inOut",
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: '.img',
-        start: "top center",
-        end: "bottom center",
-        toggleActions: "play none none none",
+
+    gsap.fromTo(
+      ".img",
+
+      {
+        opacity: 0,
+        y: 100,
+        clipPath: " polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);",
       },
-    }
-    
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
+        ease: "power2.inOut",
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: ".img",
+          start: "top center",
+          end: "bottom center",
+          toggleActions: "play none none none",
+        },
+      }
     );
-}, []);
+  }, []);
 
+  if (loading) return <p>,....Loading</p>;
 
-if(loading) return <p>,....Loading</p>
-
-
-console.log(data)
+  console.log(data);
 
   return (
     <section className="bg-white px-2  md:px-20 md:py-0 py-10 ">
@@ -117,58 +117,60 @@ console.log(data)
           <span>working</span>
           <span> with </span>
           <span> me.</span>
-         
         </p>
       </h1>
-      {isMobile ? <TestimonialSlide data={data} /> : <DesktopTestimonial data={data} />}
+      {isMobile ? (
+        <TestimonialSlide data={data} />
+      ) : (
+        <DesktopTestimonial data={data} />
+      )}
     </section>
   );
 };
 
 export default Testimonial;
 
-export function DesktopTestimonial({data}) {
-
-
-
+export function DesktopTestimonial({ data }) {
   return (
     <div className="flex items-center justify-between gap-2 mb-4">
-      {data&&data.Testimonial?.map((item) => (
-        <div
-          className={`${
-            item.id === 1
-              ? "md:mt-[10rem]"
-              : item.id === 2
-              ? "md:-mt-[2rem]" 
-              : "md:-mt-[16rem]"
-          } md:flex md:flex-col md:items-start md:gap-8`}
-          key={item.id}
-        >
-          <img
-           
-            src={`${'http://localhost:1337'}${item.Image.data.attributes.url}`}
-            alt="author"
-            className={`rounded-2xl img clip-your-needful ${
+      {data &&
+        data.Testimonial?.map((item) => (
+          <div
+            className={`${
               item.id === 1
-                ? "h-72 w-[28rem]"
+                ? "md:mt-[10rem]"
                 : item.id === 2
-                ? "h-[28rem] w-[24rem]"
-                : " h-[32rem] w-[24rem]"
-            } object-cover`}
-          />
-          <p className="text-left text-[1.2rem] w-[25rem]">
-            {item.description}
-          </p>
-          <p className="md:flex md:flex-col gap-1">
-            <span className="text-[1.1rem] font-bold uppercase">
-              {item.author}
-            </span>
-            <span className="text-[1.1rem] uppercase text-[#535351]">
-              {item.authorTitle}
-            </span>
-          </p>
-        </div>
-      ))}
+                ? "md:-mt-[2rem]"
+                : "md:-mt-[16rem]"
+            } md:flex md:flex-col md:items-start md:gap-8`}
+            key={item.id}
+          >
+            <img
+              src={`${"http://localhost:1337"}${
+                item.Image.data.attributes.url
+              }`}
+              alt="author"
+              className={`rounded-2xl img clip-your-needful ${
+                item.id === 1
+                  ? "h-72 w-[28rem]"
+                  : item.id === 2
+                  ? "h-[28rem] w-[24rem]"
+                  : " h-[32rem] w-[24rem]"
+              } object-cover`}
+            />
+            <p className="text-left text-[1.2rem] w-[25rem]">
+              {item.description}
+            </p>
+            <p className="md:flex md:flex-col gap-1">
+              <span className="text-[1.1rem] font-bold uppercase">
+                {item.author}
+              </span>
+              <span className="text-[1.1rem] uppercase text-[#535351]">
+                {item.authorTitle}
+              </span>
+            </p>
+          </div>
+        ))}
     </div>
   );
 }

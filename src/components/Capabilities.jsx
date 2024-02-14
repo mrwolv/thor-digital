@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import gsap from "gsap";
-import { useEffect } from "react";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import SplitType from "split-type";
 import UseFetch from "../hooks/UseFetch";
 
@@ -9,43 +8,23 @@ const Capabilities = () => {
   const { data, loading } = UseFetch(
     "http://localhost:1337/api/capabilitie?populate=*"
   );
+
+  const containerRef = useRef(null);
+  const [triggered, setTriggered] = useState(false);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ourText = new SplitType(".our-text", { types: "chars" });
-    const chars = ourText.chars;
-    gsap.fromTo(
-      chars,
-      {
-        y: 100,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1.1,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: chars,
-          start: "top top",
-          end: "bottom center",
-          toggleActions: "play none none none",
-        },
-      }
-    );
+    if (inView && !triggered) {
+      gsap.registerPlugin("ScrollTrigger");
 
-    gsap.to(".container", {
-      scrollTrigger: {
-        pin: ".container",
-        end: "+=700",
-        pinSpacing: true,
-        scrub: true,
-      },
-    });
-
-    // Sequential animation of boxes
-    gsap.utils.toArray(".box").forEach((box, index) => {
+      // Text animation
+      const ourText = new SplitType(".our-text", { types: "chars" });
+      const chars = ourText.chars;
       gsap.fromTo(
-        box,
+        chars,
         {
           y: 100,
           opacity: 0,
@@ -53,33 +32,65 @@ const Capabilities = () => {
         {
           y: 0,
           opacity: 1,
-          duration: 1.2,
-          delay: 1.4 * index,
-          ease: "power3.inOut",
-          scrollTrigger: {
-            trigger: box,
-            start: "top top", // Adjust start point for each box animation
-            end: "bottom center", // Adjust end point for each box animation
-            toggleActions: "play none none none",
-          },
+          duration: 1.1,
+          ease: "power2.inOut",
         }
       );
-    });
-  }, [data?.Capabilities]);
 
-  if (loading) return <p> this is capabilities ....loading </p>;
+      // Container pinning
+      gsap.to(containerRef.current, {
+        scrollTrigger: {
+          pin: containerRef.current,
+          start: "top top",
+          end: "+=200%",
+          pinSpacing: true,
+          scrub: true,
+        },
+      });
+
+      // Sequential animation of boxes when they come into view
+      gsap.utils.toArray(".box").forEach((box, index) => {
+        gsap.fromTo(
+          box,
+          {
+            y: 100,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            delay: 1.4 * index,
+            ease: "power3.inOut",
+            scrollTrigger: {
+              trigger: box,
+              start: "top 80%", // Adjust this value as needed for when you want the animation to start
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
+
+      setTriggered(true);
+    }
+  }, [inView, triggered]);
+
+  if (loading) return <p>Capabilities loading...</p>;
 
   return (
-    <div className="bg-[#562ABD] md:px-20 md:py-24 py-4 px-6  ">
-      <div>
-        <h1 className="text-[2.5rem] md:text-[3rem] font-extrabold text-white our-text clip-your-needful-style   ">
+    <div className="bg-[#562ABD] md:px-20 md:py-24 py-4 px-6">
+      <div className="container" ref={containerRef}>
+        <h1
+          className="text-[2.5rem] md:text-[3rem] font-extrabold text-white our-text clip-your-needful-style"
+          ref={ref}
+        >
           Capabilities
         </h1>
-        <div className="grid grid-flow-row md:grid md:grid-cols-2 gap-10 py-10  container   ">
+        <div className="grid grid-flow-row md:grid md:grid-cols-2 gap-10 py-10">
           {data &&
             data?.Capabilities.map((item) => (
               <div
-                className="flex flex-col  justify-between gap-7 text-white box"
+                className="flex flex-col justify-between gap-7 text-white box"
                 key={item.capNum}
               >
                 <span className="text-[1.2rem] font-bold">0{item.id}</span>

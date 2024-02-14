@@ -96,13 +96,10 @@ const Footer = () => {
       </div>
       <div className="mt-10 flex flex-col  justify-between gap-4 md:flex-row md:justify-between text-white   ">
         <p className="text-[1.1rem]">
-          Designed by
-          <span className="text-[#6ED5A6] underline text-[1.1rem]">
-            {" "}
-            Thor Solutions{" "}
-          </span>
+          Designed In House
+         
         </p>
-        <p>Copyright &copy; 2024 Thor Solutions</p>
+        <p className="capitalize">Copyright &copy; 2024 Thor Solutions, a heratech ltd brand</p>
       </div>
     </footer>
   );
