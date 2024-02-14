@@ -58,8 +58,8 @@ const Capabilities = () => {
           ease: "power3.inOut",
           scrollTrigger: {
             trigger: box,
-            start: "top bottom", // Adjust start point for each box animation
-            end: "bottom bottom ", // Adjust end point for each box animation
+            start: "top top", // Adjust start point for each box animation
+            end: "bottom center", // Adjust end point for each box animation
             toggleActions: "play none none none",
           },
         }

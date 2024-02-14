@@ -102,7 +102,7 @@ const DesktopImageSlider = () => {
             
             <SwiperSlide key={index}>
               <div className="md:flex md:flex-col md:mb-20 hover:cursor-pointer">
-                <Link to={`/post/${encodeURIComponent(item.title)}`}>
+                <Link to={`/post/${encodeURIComponent(item.Title)}`}>
                   <img
                    src={`${'http://localhost:1337'}${item.Image.data.attributes.url}`}
                     alt={item.Image.data && item.Image.data.attributes.alternativeText}
