@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { testimonial } from "../constants/featured";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Swiper, SwiperSlide } from "swiper/react";
 import gsap from "gsap";
 import SplitType from "split-type";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import UseFetch from "../hooks/UseFetch";
+import { useInView } from "react-intersection-observer";
 
 const Testimonial = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -26,87 +27,92 @@ const Testimonial = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const { ref, inView } = useInView();
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     // Function to create a SplitType instance and animate each word
-    const animateWords = (element) => {
-      const splitType = new SplitType(element, { types: "words" });
-      const words = splitType.words;
+    if (inView) {
+      const animateWords = (element) => {
+        const splitType = new SplitType(element, { types: "words" });
+        const words = splitType.words;
 
-      gsap.from(words, {
-        opacity: 0,
-        y: 100,
-        duration: 0.9,
-        ease: "power2.inOut",
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: element,
-          start: "top center",
-          end: "bottom center",
-          toggleActions: "play none none none",
-        },
-      });
-    };
+        gsap.from(words, {
+          opacity: 0,
+          y: 100,
+          duration: 0.9,
+          ease: "power2.inOut",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: element,
+            start: "top center",
+            end: "bottom center",
+            toggleActions: "play none none none",
+          },
+        });
+      };
 
-    // Function to animate each line
-    const animateLines = (element) => {
-      const splitType = new SplitType(element, { types: "lines" });
-      const lines = splitType.lines;
+      // Function to animate each line
+      const animateLines = (element) => {
+        const splitType = new SplitType(element, { types: "lines" });
+        const lines = splitType.lines;
 
-      gsap.from(lines, {
-        opacity: 0,
-        y: 100,
-        duration: 0.9,
-        ease: "power2.inOut",
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: element,
-          start: "top center",
-          end: "bottom center",
-          toggleActions: "play none none none",
-        },
-      });
-    };
+        gsap.from(lines, {
+          opacity: 0,
+          y: 100,
+          duration: 0.9,
+          ease: "power2.inOut",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: element,
+            start: "top center",
+            end: "bottom center",
+            toggleActions: "play none none none",
+          },
+        });
+      };
 
-    // Animate words for the first part
-    animateWords(".text-split > p");
+      // Animate words for the first part
+      animateWords(".text-split > p");
 
-    // Animate line for the second part
-    animateLines(".text-split > span");
+      // Animate line for the second part
+      animateLines(".text-split > span");
+    }
+  }, [inView]);
 
-    gsap.fromTo(
-      ".img",
+  gsap.fromTo(
+    ".img",
 
-      {
-        opacity: 0,
-        y: 100,
-        clipPath: " polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);",
+    {
+      opacity: 0,
+      y: 100,
+      clipPath: " polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);",
+    },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.9,
+      clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
+      ease: "power2.inOut",
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: ".img",
+        start: "top center",
+        end: "bottom center",
+        toggleActions: "play none none none",
       },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.9,
-        clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
-        ease: "power2.inOut",
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: ".img",
-          start: "top center",
-          end: "bottom center",
-          toggleActions: "play none none none",
-        },
-      }
-    );
-  }, []);
-
+    }
+  );
   if (loading) return <p>,....Loading</p>;
-
-  console.log(data);
 
   return (
     <section className="bg-white px-2  md:px-20 md:py-0 py-10 ">
-      <h1 className="flex flex-col justify-center text-[1.5rem] md:text-[3.2rem] font-black ">
+      <h1
+        className="flex flex-col justify-center text-[1.5rem] md:text-[3.2rem] font-black "
+        ref={ref}
+      >
         <p className="flex items-center gap-3 text-split clip-your-needful-style ">
           <span className=""> Take </span>
           <span className=""> their </span>

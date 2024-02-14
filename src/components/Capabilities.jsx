@@ -42,7 +42,7 @@ const Capabilities = () => {
         scrollTrigger: {
           pin: containerRef.current,
           start: "top top",
-          end: "+=200%",
+          end: "+=300%",
           pinSpacing: true,
           scrub: true,
         },
