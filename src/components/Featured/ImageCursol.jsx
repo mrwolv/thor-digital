@@ -6,8 +6,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { featured } from "../../constants/featured";
 import { Link } from "react-router-dom";
+import UseFetch from "../../hooks/UseFetch";
 
-const ImageCursol = ({ data }) => {
+const ImageCursol = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
@@ -26,9 +27,9 @@ const ImageCursol = ({ data }) => {
   return (
     <section className="mt-6 -mb-6">
       {isMobile ? (
-        <MobileImageComponent data={data} />
+        <MobileImageComponent  />
       ) : (
-        <DesktopImageSlider data={data} />
+        <DesktopImageSlider  />
       )}
     </section>
   );
@@ -80,7 +81,11 @@ const MobileImageComponent = () => {
   );
 };
 
-const DesktopImageSlider = ({ data }) => {
+const DesktopImageSlider = () => {
+  
+  const {data} = UseFetch("http://localhost:1337/api/post?populate=FeaturedPost.Image")
+  console.log(data)
+  
   return (
     <section>
       <Swiper
@@ -92,28 +97,28 @@ const DesktopImageSlider = ({ data }) => {
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
       >
         {data &&
-          data.Posts?.map((item, index) => (
+          data.FeaturedPost?.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="md:flex md:flex-col md:mb-20 hover:cursor-pointer">
                 <Link to={`/post/${encodeURIComponent(item.title)}`}>
                   <img
                     src={item.Image.data && item.Image.data.attributes.name}
-                    alt={item.Image.data && item.Image.data.attributes.name}
+                    alt={item.Image.data && item.Image.data.attributes.alternativeText}
                     className="rounded-md w-full h-full"
                   />
                   <p className="flex items-center gap-6 mt-6 uppercase">
                     <span className="border border-[#747373] text-[#747373] py-1.5 px-4 rounded">
-                      {item.categoryTitle1}
+                      {item.Type1}
                     </span>
                     <span className="border border-[#747373] text-[#747373] py-1.5 px-4 rounded">
-                      {item.categoryTitle2}
+                      {item.Type2}
                     </span>
                   </p>
                   <p className="text-[1.7rem] font-semibold mt-4">
-                    {item.postTitle}
+                    {item.Title}
                   </p>
                   <p className="flex items-center gap-3 mt-2 text-[#747373]">
-                    <span>{item.date}</span>
+                    <span>{item.Date}</span>
 
                     <span className="h-1 w-1 rounded-full bg-[#747373]"></span>
                     <span>20 min read</span>
