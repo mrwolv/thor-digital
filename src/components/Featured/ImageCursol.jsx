@@ -84,8 +84,9 @@ const MobileImageComponent = () => {
 const DesktopImageSlider = () => {
   
   const {data} = UseFetch("http://localhost:1337/api/post?populate=FeaturedPost.Image")
-  console.log(data)
   
+  console.log(data)
+
   return (
     <section>
       <Swiper
@@ -98,11 +99,12 @@ const DesktopImageSlider = () => {
       >
         {data &&
           data.FeaturedPost?.map((item, index) => (
+            
             <SwiperSlide key={index}>
               <div className="md:flex md:flex-col md:mb-20 hover:cursor-pointer">
                 <Link to={`/post/${encodeURIComponent(item.title)}`}>
                   <img
-                    src={item.Image.data && item.Image.data.attributes.name}
+                   src={`${'http://localhost:1337'}${item.Image.data.attributes.url}`}
                     alt={item.Image.data && item.Image.data.attributes.alternativeText}
                     className="rounded-md w-full h-full"
                   />

@@ -1,13 +1,16 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { testimonial } from "../constants/featured";
 import { Swiper, SwiperSlide } from "swiper/react";
 import gsap from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import UseFetch from "../hooks/UseFetch";
 
-const Testimonial = ({data}) => {
+const Testimonial = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+  const {data,loading} = UseFetch('http://localhost:1337/api/testimonial?populate=Testimonial.Image')
   
   
   useEffect(() => {
@@ -93,11 +96,13 @@ const Testimonial = ({data}) => {
     }
     
     );
+}, []);
 
-  
-  
 
-  }, []);
+if(loading) return <p>,....Loading</p>
+
+
+console.log(data)
 
   return (
     <section className="bg-white px-2  md:px-20 md:py-0 py-10 ">
@@ -123,22 +128,25 @@ const Testimonial = ({data}) => {
 export default Testimonial;
 
 export function DesktopTestimonial({data}) {
+
+
+
   return (
-    <div className="flex items-center justify-between gap-2">
+    <div className="flex items-center justify-between gap-2 mb-4">
       {data&&data.Testimonial?.map((item) => (
         <div
           className={`${
             item.id === 1
               ? "md:mt-[10rem]"
               : item.id === 2
-              ? "md:-mt-[2rem]"
+              ? "md:-mt-[2rem]" 
               : "md:-mt-[16rem]"
-          } md:flex md:flex-col md:items-start md:gap-5`}
+          } md:flex md:flex-col md:items-start md:gap-8`}
           key={item.id}
         >
           <img
            
-            src={item.Image.data && item.Image.data.attributes.name}
+            src={`${'http://localhost:1337'}${item.Image.data.attributes.url}`}
             alt="author"
             className={`rounded-2xl img clip-your-needful ${
               item.id === 1
@@ -148,15 +156,15 @@ export function DesktopTestimonial({data}) {
                 : " h-[32rem] w-[24rem]"
             } object-cover`}
           />
-          <p className="text-left text-[1.125rem] w-[25rem]">
-            {item.About}
+          <p className="text-left text-[1.2rem] w-[25rem]">
+            {item.description}
           </p>
           <p className="md:flex md:flex-col gap-1">
             <span className="text-[1.1rem] font-bold uppercase">
-              {item.name}
+              {item.author}
             </span>
             <span className="text-[1.1rem] uppercase text-[#535351]">
-              {item.jobTitle}
+              {item.authorTitle}
             </span>
           </p>
         </div>

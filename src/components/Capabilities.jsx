@@ -36,7 +36,7 @@ const Capabilities = () => {
     gsap.to(".container", {
       scrollTrigger: {
         pin: ".container",
-        end: "+=600",
+        end: "+=700",
         pinSpacing: true,
         scrub: true,
       },
@@ -54,12 +54,12 @@ const Capabilities = () => {
           y: 0,
           opacity: 1,
           duration: 1.2,
-          delay: 1.8 * index,
+          delay: 1.4 * index,
           ease: "power3.inOut",
           scrollTrigger: {
             trigger: box,
             start: "top bottom", // Adjust start point for each box animation
-            end: "bottom -200%", // Adjust end point for each box animation
+            end: "bottom bottom ", // Adjust end point for each box animation
             toggleActions: "play none none none",
           },
         }

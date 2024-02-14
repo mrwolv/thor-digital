@@ -8,9 +8,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import { useEffect } from "react";
+import UseFetch from "../hooks/UseFetch";
 
-const WhoAmI = ({data}) => {
+const WhoAmI = () => {
 
+const {data,loading} = UseFetch("http://localhost:1337/api/who-am-i?populate=*")
 console.log(data)
   
   useEffect(() => {
@@ -41,6 +43,9 @@ console.log(data)
       }
     );
   }, []);
+
+  if(loading) return <p>....Loading</p>
+
   return (
     <section className="bg-white md:p-20">
       <div className="flex flex-col md:flex-row items-center justify-between gap-20">
@@ -60,30 +65,26 @@ console.log(data)
 
         <div className="p-4  flex flex-col md:ml-32 ml-0 gap-6 justify-between">
           <h1 className="text-[2.1rem] md:text-[3.4rem] font-extrabold clip-your-needful-style text-head ">
-            {data&&data.WhoAmI.Title  }
+          Who Am I
           </h1>
           <p className="md:text-[1.2rem] ">
-           {data&&data.WhoAmI.whoamiDescription}
+           {data&&data?.text1}
           </p>
-          {/* <p className="md:text-[1.2rem]">
-            I’m committed to being the go-to for digital innovation in the tech
-            and marketing space. I work with businesses and founders who are
-            seeking better ways to engage their customers and achieve their
-            goals. My goal is simple: to consistently produce high quality work
-            which accelerates client’s growth and takes them to new heights.
-          </p> */}
+          <p className="md:text-[1.2rem]">
+          {data&&data?.text2}
+          </p>
           <div className="flex flex-col items-start  justify-between gap-3">
             <p className="flex items-center justify-between  gap-2">
-              <SiGmail color="#562ABD" size={24} />
-              <span className="text-center text-[1.1rem]">{data&&data?.WhoAmI.gmail}</span>
+              <SiGmail color="#562ABD" size={27} />
+              <span className="text-center text-[1.3rem] text-[#562abd]">{data&&data?.gmail}</span>
             </p>
             <p className="flex items-center justify-between  gap-2">
-              <FaTwitter color="#562ABD" size={24} />
-              <span className="text-center text-[1.1rem]">{data&&data?.WhoAmI.twitter}</span>
+              <FaTwitter color="#562ABD" size={27} />
+              <span className="text-center text-[1.3rem] text-[#562abd]">{data&&data?.twitter}</span>
             </p>
             <p className="flex items-center justify-between  gap-2">
-              <FaLinkedin color="#562ABD" size={24} />
-              <span className="text-center text-[1.1rem]">{data&&data?.WhoAmI.linkdin}</span>
+              <FaLinkedin color="#562ABD" size={27} />
+              <span className="text-center text-[1.3rem] text-[#562abd]">{data&&data?.linkedin}</span>
             </p>
           </div>
         </div>
