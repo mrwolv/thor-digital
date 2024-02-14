@@ -74,17 +74,17 @@ console.log(data)
           {data&&data?.text2}
           </p>
           <div className="flex flex-col items-start  justify-between gap-3">
-            <p className="flex items-center justify-between  gap-2">
-              <SiGmail color="#562ABD" size={27} />
-              <span className="text-center text-[1.3rem] text-[#562abd]">{data&&data?.gmail}</span>
+            <p className="flex items-center justify-between  gap-2 hover:text-[#210c6e] text-[#562ABD]">
+              <SiGmail  size={27} className="hover:text-[#210c6e]" />
+              <span className="text-center text-[1.3rem] text-[#562abd] hover:text-[#210c6e]">{data&&data?.gmail}</span>
             </p>
-            <p className="flex items-center justify-between  gap-2">
-              <FaTwitter color="#562ABD" size={27} />
-              <span className="text-center text-[1.3rem] text-[#562abd]">{data&&data?.twitter}</span>
+            <p className="flex items-center justify-between  gap-2 hover:text-[#210c6e] text-[#562ABD]">
+              <FaTwitter  size={27} className="hover:text-[#210c6e]" />
+              <span className="text-center text-[1.3rem] text-[#562abd] hover:text-[#210c6e]">{data&&data?.twitter}</span>
             </p>
-            <p className="flex items-center justify-between  gap-2">
-              <FaLinkedin color="#562ABD" size={27} />
-              <span className="text-center text-[1.3rem] text-[#562abd]">{data&&data?.linkedin}</span>
+            <p className="flex items-center justify-between  gap-2 text-[#562ABD] hover:text-[#210c6e] ">
+              <FaLinkedin  size={27} className="hover:text-[#210c6e]" />
+              <span className="text-center text-[1.3rem] text-[#562abd] hover:text-[#210c6e]">{data&&data?.linkedin}</span>
             </p>
           </div>
         </div>
