@@ -9,10 +9,8 @@ import WhoAmI from "../components/WhoAmI";
 import Testimonial from "../components/Testimonial";
 import Footer from "./Footer";
 
-const Outlet = ({data}) => {
+const Outlet = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -21,12 +19,12 @@ const Outlet = ({data}) => {
   return (
     <main className=" bg-[#210C6E] h-full  ">
       <Navbar isOpen={isOpen} toggle={toggleMenu} />
-      <HeroSection data={data} />
+      <HeroSection />
       <SlidingText />
-      <Capabilities data={data} />
-      <Featured text="Featured Post" data={data} />
-      <WhoAmI  data={data}/>
-      <Testimonial data={data}/>
+      <Capabilities />
+      <Featured text="Featured Post" />
+      <WhoAmI />
+      <Testimonial />
       <Footer />
     </main>
   );

@@ -1,8 +1,12 @@
-import { topics } from "../../constants/featured";
+import UseFetch from "../../hooks/UseFetch";
 
 const Popularpost = () => {
+  const { data } = UseFetch(
+    "http://localhost:1337/api/topic?populate=Topic.imgUrl"
+  );
+  const topics = data?.Topic || [];
 
-    const slicedTopics = topics.slice(0, 4);
+  const slicedTopics = topics.slice(0, 4);
 
   return (
     <div className=" bg-[#562ABD] px-6 py-10 md:p-20">
@@ -17,7 +21,9 @@ const Popularpost = () => {
           >
             {/* Your existing code for each topic */}
             <img
-              src={item.imageUrl}
+              src={`${"http://localhost:1337"}${
+                item?.imgUrl?.data?.attributes?.url
+              }`}
               alt={item.author}
               className="rounded-2xl"
             />

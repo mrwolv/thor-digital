@@ -1,15 +1,28 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Button from "../Button";
-import { topics } from "../../constants/featured";
 import { Link } from "react-router-dom";
+import UseFetch from "../../hooks/UseFetch";
+// import { topics } from "../../constants/featured";
 
-const BlogGallery = () => {
+
+
+const BlogGallery = ()=> {
+
+  const {data} = UseFetch('http://localhost:1337/api/topic?populate=Topic.imgUrl')
+  const topics = data?.Topic || []; 
+
+
+  
+
+  // const topics = fetchData?.data?.attributes?.Topic
+
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedTopic, setSelectedTopic] = useState(null);
   const itemsPerPage = 4; // Adjust the number of items per page
 
   const filteredTopics = selectedTopic
-    ? topics.filter((item) => item.topic === selectedTopic)
+    ? topics?.filter((item) => item.topic === selectedTopic)
     : topics;
 
   const totalPages = Math.ceil(filteredTopics.length / itemsPerPage);
@@ -55,18 +68,20 @@ const BlogGallery = () => {
             className="flex flex-col items-center justify-between gap-10"
             key={item.id}
           >
-            <Link to={`/post/${encodeURIComponent(item.description)}`}>
+            <Link to={`/post/${encodeURIComponent(item.description)}`} state={{item}}>
               {/* Your existing code for each topic */}
               <img
-                src={item.imageUrl}
+              src={`${"http://localhost:1337"}${
+                item?.imgUrl?.data?.attributes?.url
+              }`}
                 alt={item.author}
-                className="rounded-2xl"
+                className="rounded-2xl "
               />
               <p className="mt-3 uppercase md:text-[1.3rem] text-[1.1rem] text-black">
-                {item.topic}
+                {item && item?.topic}
               </p>
               <h1 className="text-[1.3rem] md:text-[2rem] font-semibold text-black">
-                {item.description}
+              {item && item?.description}
               </h1>
               <p className="text-[1.1rem ] md:text-[1.2rem] text-gray-400 flex items-center gap-2">
                 <span className="uppercase">{item.author}</span>

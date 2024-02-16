@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { testimonial } from "../constants/featured";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,6 +14,8 @@ const Testimonial = () => {
   const { data, loading } = UseFetch(
     "http://localhost:1337/api/testimonial?populate=Testimonial.Image"
   );
+
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -82,8 +84,10 @@ const Testimonial = () => {
     }
   }, [inView]);
 
+
+
   gsap.fromTo(
-    ".img",
+    ".this-is-gsap-image",
 
     {
       opacity: 0,
@@ -94,15 +98,16 @@ const Testimonial = () => {
       y: 0,
       opacity: 1,
       duration: 0.9,
+      delay:1,
       clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
       ease: "power2.inOut",
       stagger: 0.2,
-      scrollTrigger: {
-        trigger: ".img",
-        start: "top center",
-        end: "bottom center",
-        toggleActions: "play none none none",
-      },
+      // scrollTrigger: {
+      //   trigger: ".this-is-gsap-image",
+      //   start: "top center",
+      //   end: "bottom center",
+      //   toggleActions: "play none none none",
+      // },
     }
   );
   if (loading) return <p>,....Loading</p>;
@@ -156,7 +161,7 @@ export function DesktopTestimonial({ data }) {
                 item.Image.data.attributes.url
               }`}
               alt="author"
-              className={`rounded-2xl img clip-your-needful ${
+              className={`rounded-2xl this-is-gsap-image clip-your-needful ${
                 item.id === 1
                   ? "h-72 w-[28rem]"
                   : item.id === 2

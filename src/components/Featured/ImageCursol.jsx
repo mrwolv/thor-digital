@@ -26,11 +26,7 @@ const ImageCursol = () => {
 
   return (
     <section className="mt-6 -mb-6">
-      {isMobile ? (
-        <MobileImageComponent  />
-      ) : (
-        <DesktopImageSlider  />
-      )}
+      {isMobile ? <MobileImageComponent /> : <DesktopImageSlider />}
     </section>
   );
 };
@@ -82,10 +78,9 @@ const MobileImageComponent = () => {
 };
 
 const DesktopImageSlider = () => {
-  
-  const {data} = UseFetch("http://localhost:1337/api/post?populate=FeaturedPost.Image")
-  
-  console.log(data)
+  const { data } = UseFetch(
+    "http://localhost:1337/api/post?populate=FeaturedPost.Image"
+  );
 
   return (
     <section>
@@ -99,13 +94,17 @@ const DesktopImageSlider = () => {
       >
         {data &&
           data.FeaturedPost?.map((item, index) => (
-            
             <SwiperSlide key={index}>
               <div className="md:flex md:flex-col md:mb-20 hover:cursor-pointer">
                 <Link to={`/post/${encodeURIComponent(item.Title)}`}>
                   <img
-                   src={`${'http://localhost:1337'}${item.Image.data.attributes.url}`}
-                    alt={item.Image.data && item.Image.data.attributes.alternativeText}
+                    src={`${"http://localhost:1337"}${
+                      item.Image.data.attributes.url
+                    }`}
+                    alt={
+                      item.Image.data &&
+                      item.Image.data.attributes.alternativeText
+                    }
                     className="rounded-md w-full h-full"
                   />
                   <p className="flex items-center gap-6 mt-6 uppercase">

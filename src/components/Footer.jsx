@@ -3,7 +3,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
 import SplitType from "split-type";
 
+
 const Footer = () => {
+
+ 
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -50,7 +54,7 @@ const Footer = () => {
             hello@gmail.com
           </span>
           <span className="uppercase hover:text-white text-[1.1rem]">
-            M-F 10 AM -6Pm GMT
+            M-F 10 AM-6Pm GMT
           </span>
           <span className="hover:text-white text-[1.1rem]">S/S NOT ONLINE</span>
         </div>

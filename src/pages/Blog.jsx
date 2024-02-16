@@ -1,4 +1,4 @@
-import  { useEffect } from "react";
+import { useEffect, } from "react";
 import Navbar from "../components/Navbar";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -8,6 +8,8 @@ import Popularpost from "../components/blogcomponents/Popularpost";
 import Footer from "../components/Footer";
 
 const Blog = () => {
+
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -29,6 +31,7 @@ const Blog = () => {
         },
       }
     );
+   
   }, []);
 
   return (
@@ -56,7 +59,7 @@ const Blog = () => {
             <span className="uppercase "> feb 2024</span>
           </p>
         </div>
-        <BlogGallery />
+        <BlogGallery  />
         <NewsLetter />
         <Popularpost />
         <Footer />

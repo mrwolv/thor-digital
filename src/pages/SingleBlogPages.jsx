@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import Navbar from "../components/Navbar";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import NewsLetter from "../components/blogcomponents/NewsLetter";
 
@@ -9,7 +9,14 @@ import Footer from "../components/Footer";
 
 const SingleBlogPages = () => {
   const navigate = useNavigate();
+  const {state} = useLocation()
   const {title}  = useParams()
+  const item = state
+  console.log(item)
+  if (!item) {
+    // Handle the case where 'item' is null/undefined
+    return <div>No data available</div>;
+  }
 
   return (
     <>
