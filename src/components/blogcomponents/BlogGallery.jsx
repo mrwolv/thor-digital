@@ -68,7 +68,7 @@ const BlogGallery = ()=> {
             className="flex flex-col items-center justify-between gap-10"
             key={item.id}
           >
-            <Link to={`/post/${encodeURIComponent(item.description)}`} state={{item}}>
+            <Link to={`/post/${encodeURIComponent(item.description)}`} state={{blogData:item}}>
               {/* Your existing code for each topic */}
               <img
               src={`${"http://localhost:1337"}${
