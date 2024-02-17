@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "who_am_is",
+  "info": {
+    "singularName": "who-am-i",
+    "pluralName": "who-am-is",
+    "displayName": "WhoAmI",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text1": {
+      "type": "text"
+    },
+    "text2": {
+      "type": "text"
+    },
+    "gmail": {
+      "type": "string"
+    },
+    "linkedin": {
+      "type": "string"
+    },
+    "twitter": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "capabilities",
+  "info": {
+    "singularName": "capabilitie",
+    "pluralName": "capabilities",
+    "displayName": "Capabilities",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Capabilities": {
+      "displayName": "Capabilities",
+      "type": "component",
+      "repeatable": true,
+      "component": "capabilities.capabilities"
+    }
+  }
+}

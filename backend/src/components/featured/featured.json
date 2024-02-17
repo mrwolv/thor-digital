@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_featured_featureds",
+  "info": {
+    "displayName": "featured"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Type1": {
+      "type": "string"
+    },
+    "Type2": {
+      "type": "string"
+    },
+    "Date": {
+      "type": "date"
+    },
+    "Image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

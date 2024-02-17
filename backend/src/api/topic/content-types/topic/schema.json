@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "topics",
+  "info": {
+    "singularName": "topic",
+    "pluralName": "topics",
+    "displayName": "Topic",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Topic": {
+      "displayName": "Topic",
+      "type": "component",
+      "repeatable": true,
+      "component": "topic.topic"
+    }
+  }
+}

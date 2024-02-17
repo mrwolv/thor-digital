@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "FeaturedPost": {
+      "displayName": "featured",
+      "type": "component",
+      "repeatable": true,
+      "component": "featured.featured"
+    }
+  }
+}

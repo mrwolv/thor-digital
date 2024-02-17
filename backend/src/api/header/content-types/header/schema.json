@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "headers",
+  "info": {
+    "singularName": "header",
+    "pluralName": "headers",
+    "displayName": "Header"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "about": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "string"
+    },
+    "blog": {
+      "type": "string"
+    },
+    "btn": {
+      "type": "string"
+    }
+  }
+}
