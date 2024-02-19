@@ -79,7 +79,7 @@ const MobileImageComponent = () => {
 
 const DesktopImageSlider = () => {
   const { data } = UseFetch(
-    "http://localhost:1337/api/post?populate=FeaturedPost.Image"
+    "https://thordigital.onrender.com/api/post?populate=FeaturedPost.Image"
   );
 
   return (

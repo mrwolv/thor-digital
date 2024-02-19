@@ -13,7 +13,7 @@ import { useInView } from "react-intersection-observer";
 
 const WhoAmI = () => {
   const { data, loading } = UseFetch(
-    "http://localhost:1337/api/who-am-i?populate=*"
+    "https://thordigital.onrender.com/api/who-am-i?populate=*"
   );
   console.log(data);
   const { ref, inView } = useInView();
