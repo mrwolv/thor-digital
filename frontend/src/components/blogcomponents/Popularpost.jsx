@@ -2,7 +2,7 @@ import UseFetch from "../../hooks/UseFetch";
 
 const Popularpost = () => {
   const { data } = UseFetch(
-    "http://localhost:1337/api/topic?populate=Topic.imgUrl"
+    "https://thordigital.onrender.com/api/topic?populate=Topic.imgUrl"
   );
   const topics = data?.Topic || [];
 
@@ -21,9 +21,7 @@ const Popularpost = () => {
           >
             {/* Your existing code for each topic */}
             <img
-              src={`${"http://localhost:1337"}${
-                item?.imgUrl?.data?.attributes?.url
-              }`}
+              src={item?.imgUrl?.data?.attributes?.url}
               alt={item.author}
               className="rounded-2xl"
             />

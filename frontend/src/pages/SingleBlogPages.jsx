@@ -44,15 +44,12 @@ const SingleBlogPages = () => {
         </div>
         <div className="mt-10">
           <img
-            src={`${"http://localhost:1337"}${
-              item?.imgUrl?.data?.attributes?.url
-            }`}
+            src={item?.imgUrl?.data?.attributes?.url}
             alt=""
             className=" rounded-2xl object-contain w-full "
           />
         </div>
         <div className="mt-12 md:mt-20 md:px-52 md:text-[1.25rem]">
-          <h1 className="md:text-[1.9rem] font-medium">Introduction</h1>
           <div
             dangerouslySetInnerHTML={{ __html: item?.topicDescription || "" }}
           />
