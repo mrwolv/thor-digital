@@ -1,21 +1,19 @@
-/* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from "react";
-import { testimonial } from "../constants/featured";
+import { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Swiper, SwiperSlide } from "swiper/react";
 import gsap from "gsap";
 import SplitType from "split-type";
 import UseFetch from "../hooks/UseFetch";
 import { useInView } from "react-intersection-observer";
+import { Swiper } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
+
 
 const Testimonial = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const { data, loading } = UseFetch(
-   " https://thordigital.onrender.com/api/testimonial?populate=Testimonial.Image"
+    " https://thordigital.onrender.com/api/testimonial?populate=Testimonial.Image"
   );
-
-
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,7 +33,6 @@ const Testimonial = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Function to create a SplitType instance and animate each word
     if (inView) {
       const animateWords = (element) => {
         const splitType = new SplitType(element, { types: "words" });
@@ -56,7 +53,6 @@ const Testimonial = () => {
         });
       };
 
-      // Function to animate each line
       const animateLines = (element) => {
         const splitType = new SplitType(element, { types: "lines" });
         const lines = splitType.lines;
@@ -76,41 +72,28 @@ const Testimonial = () => {
         });
       };
 
-      // Animate words for the first part
       animateWords(".text-split > p");
-
-      // Animate line for the second part
       animateLines(".text-split > span");
+
+      gsap.fromTo(
+        ".this-is-gsap-image",
+        {
+          opacity: 0,
+          y: 100,
+          // clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
+          duration: 0.9,
+          ease: "power2.inOut",
+        }
+      );
     }
   }, [inView]);
 
-
-
-  gsap.fromTo(
-    ".this-is-gsap-image",
-
-    {
-      opacity: 0,
-      y: 100,
-      clipPath: " polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);",
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 0.9,
-      delay:1,
-      clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
-      ease: "power2.inOut",
-      stagger: 0.2,
-      // scrollTrigger: {
-      //   trigger: ".this-is-gsap-image",
-      //   start: "top center",
-      //   end: "bottom center",
-      //   toggleActions: "play none none none",
-      // },
-    }
-  );
-  if (loading) return <p>,....Loading</p>;
+  if (loading) return <p>Loading...</p>;
 
   return (
     <section className="bg-white px-2  md:px-20 md:py-0 py-10 ">
@@ -184,12 +167,13 @@ export function DesktopTestimonial({ data }) {
   );
 }
 
-function TestimonialSlide() {
+function TestimonialSlide({data}) {
   return (
     <Swiper>
       {
         <div className="flex items-center justify-between gap-2">
-          {testimonial.map((item) => (
+          {data &&
+        data.Testimonial?.map((item) => (
             <SwiperSlide
               spaceBetween={50}
               slidesPerView={1}

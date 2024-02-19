@@ -37,17 +37,6 @@ const Capabilities = () => {
         }
       );
 
-      // Container pinning
-      gsap.to(containerRef.current, {
-        scrollTrigger: {
-          // pin: containerRef.current,
-          // start: "top top",
-          // end: "+=300%",
-          // pinSpacing: true,
-          // scrub: true,
-        },
-      });
-
       // Sequential animation of boxes when they come into view
       gsap.utils.toArray(".box").forEach((box, index) => {
         gsap.fromTo(
