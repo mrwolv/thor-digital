@@ -40,11 +40,11 @@ const Capabilities = () => {
       // Container pinning
       gsap.to(containerRef.current, {
         scrollTrigger: {
-          pin: containerRef.current,
-          start: "top top",
-          end: "+=300%",
-          pinSpacing: true,
-          scrub: true,
+          // pin: containerRef.current,
+          // start: "top top",
+          // end: "+=300%",
+          // pinSpacing: true,
+          // scrub: true,
         },
       });
 
