@@ -8,7 +8,7 @@ import UseFetch from "../hooks/UseFetch";
 function Navbar({ navbarColor }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data, loading } = UseFetch( "http://localhost:1337/api/header?populate=*");
+  const { data, loading } = UseFetch( 'https://thordigital.onrender.com/api/header?populate=*');
 
 
 

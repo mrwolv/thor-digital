@@ -99,11 +99,11 @@ const DesktopImageSlider = () => {
                 <Link to={`/post/${encodeURIComponent(item.Title)}`}>
                   <img
                     src={`${"http://localhost:1337"}${
-                      item.Image.data.attributes.url
+                      item?.Image?.data?.attributes?.url
                     }`}
                     alt={
                       item.Image.data &&
-                      item.Image.data.attributes.alternativeText
+                      item.Image.data?.attributes.alternativeText
                     }
                     className="rounded-md w-full h-full"
                   />

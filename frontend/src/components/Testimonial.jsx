@@ -12,7 +12,7 @@ const Testimonial = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const { data, loading } = UseFetch(
-    "http://localhost:1337/api/testimonial?populate=Testimonial.Image"
+   " https://thordigital.onrender.com/api/testimonial?populate=Testimonial.Image"
   );
 
 

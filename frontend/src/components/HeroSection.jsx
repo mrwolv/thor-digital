@@ -8,7 +8,7 @@ import UseFetch from "../hooks/UseFetch";
 
 const HeroSection = () => {
   const { data, loading } = UseFetch(
-    "http://localhost:1337/api/hero-section?populate=*"
+    "https://thordigital.onrender.com/api/hero-section?populate=*"
   );
 
   useEffect(() => {

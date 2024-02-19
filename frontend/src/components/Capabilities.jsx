@@ -6,7 +6,7 @@ import UseFetch from "../hooks/UseFetch";
 
 const Capabilities = () => {
   const { data, loading } = UseFetch(
-    "http://localhost:1337/api/capabilitie?populate=*"
+    "https://thordigital.onrender.com/api/capabilitie?populate=*"
   );
 
   const containerRef = useRef(null);
