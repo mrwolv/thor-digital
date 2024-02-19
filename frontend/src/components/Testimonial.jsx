@@ -157,9 +157,7 @@ export function DesktopTestimonial({ data }) {
             key={item.id}
           >
             <img
-              src={`${"http://localhost:1337"}${
-                item.Image.data.attributes.url
-              }`}
+              src={item?.Image?.data?.attributes?.url}
               alt="author"
               className={`rounded-2xl this-is-gsap-image clip-your-needful ${
                 item.id === 1
