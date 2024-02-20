@@ -818,6 +818,7 @@ export interface ApiHeaderHeader extends Schema.SingleType {
     singularName: 'header';
     pluralName: 'headers';
     displayName: 'Header';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -825,7 +826,6 @@ export interface ApiHeaderHeader extends Schema.SingleType {
   attributes: {
     title: Attribute.String;
     about: Attribute.String;
-    capabilities: Attribute.String;
     blog: Attribute.String;
     btn: Attribute.String;
     createdAt: Attribute.DateTime;

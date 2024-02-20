@@ -67,8 +67,8 @@ const Capabilities = () => {
   if (loading) return <p>Capabilities loading...</p>;
 
   return (
-    <div className="bg-[#562ABD] md:px-20 md:py-24 py-4 px-6">
-      <div className="container" ref={containerRef}>
+    <div className="bg-[#562ABD] md:px-20 md:py-24 py-4 px-6" >
+      <div className="container" ref={containerRef} id="capabilities">
         <h1
           className="text-[2.5rem] md:text-[3rem] font-extrabold text-white our-text clip-your-needful-style"
           ref={ref}
